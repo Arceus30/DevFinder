@@ -11,7 +11,7 @@ DevFinder allows users to search for developers by name or skill, filter develop
 - ⏳ Debounced search for a smoother experience
 - 📄 Client-side pagination
 - 👤 Individual developer profile pages
-- 🌙 Light and dark mode
+- 🌙 Light and dark mode with persisted theme preference
 - 📱 Responsive design
 - 🔗 URL-based pagination using React Router
 - 🚫 Custom "Developer not found" and "Page not found" states
@@ -99,7 +99,7 @@ Make sure you have the following installed:
 - Start the development server: `npm run dev`
   The application will be available at the local URL provided by Vite.
 
-# 🔎 Search & Filtering
+## 🔎 Search & Filtering
 
 The homepage provides two ways to find developers.
 **Search**
@@ -125,7 +125,7 @@ Developer list is filtered
 The city dropdown is populated dynamically from the developer dataset.
 Selecting a city filters the displayed developers to that location.
 
-# 📄 Pagination
+## 📄 Pagination
 
 Developer results are displayed six at a time.
 
@@ -141,7 +141,7 @@ This means the current page is reflected in the URL and can be navigated without
 
 When the search query or city filter changes, pagination is reset to the first page.
 
-# 👤 Developer Profiles
+## 👤 Developer Profiles
 
 Each developer has an individual profile page: `/developer/:devId`
 The profile displays:
@@ -156,20 +156,22 @@ The profile displays:
 
 Only the developer's **avatar** and **name** are clickable from the developer card, while the rest of the card remains non-clickable.
 
-# 🌙 Theme System
+## 🌙 Theme System
 
 DevFinder includes a custom light/dark theme system using:
 
 - React Context
 - React state
 - Tailwind CSS dark mode
+- `localStorage` for theme persistence
 
-The theme is managed through ThemeContextProvider.
-The application uses a custom Tailwind dark variant:
-`@custom-variant dark (&:where(.dark, .dark *));`
+The theme is managed through `ThemeContextProvider`.
+
+The selected theme is stored in the browser's `localStorage`, so the user's theme preference is preserved after refreshing or reopening the application.
+
 The theme can be toggled using the theme switcher in the header.
 
-🎨 Tailwind CSS
+## 🎨 Tailwind CSS
 
 The project uses a custom Tailwind theme with application-specific colors.
 Some of the custom design tokens include:
@@ -195,7 +197,7 @@ Some of the custom design tokens include:
 
 This keeps the styling consistent across light and dark themes.
 
-# 🧭 Routing
+## 🧭 Routing
 
 The application uses React Router for navigation.
 **Routes**
@@ -210,7 +212,7 @@ React Router loaders are used to retrieve:
 - Available cities for the homepage
 - Developer information for profile pages
 
-# 🧩 Custom Hook
+## 🧩 Custom Hook
 
 `useDebounce`
 A reusable debounce hook is used to delay search updates:
@@ -218,7 +220,7 @@ A reusable debounce hook is used to delay search updates:
 The default delay is 500ms.
 This keeps the search experience responsive while avoiding unnecessary filtering operations while the user is typing.
 
-# 📊 Data
+## 📊 Data
 
 The project currently uses local mock data stored in: `src/services/MOCK_DATA.json`
 Each developer contains information such as:
@@ -240,7 +242,7 @@ Each developer contains information such as:
 
 No external backend or API is required to run the application.
 
-# 📱 Responsive Design
+## 📱 Responsive Design
 
 The interface is designed to work across different screen sizes.
 The developer grid adapts based on viewport width:
@@ -252,4 +254,3 @@ Desktop     → 3 columns
 ```
 
 Developer profile layouts also adapt between single-column and two-column layouts depending on screen size.
-
